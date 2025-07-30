@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Travel Host</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+    }
+
+    header {
+      background-color: #0097a7;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #ffd54f;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffd54f;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      background-image: url('portada.jpeg');
+      background-size: cover;
+      background-position: center;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 2px 2px 4px #000;
+      font-size: 3em;
+      font-weight: 700;
+    }
+
+    .section {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .destinos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 3px solid #0097a7;
+    }
+
+    .card h3 {
+      margin: 15px 0 10px;
+      color: #007c91;
+      font-weight: 700;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background-color: #0097a7;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #007c91;
+      box-shadow: 0 4px 15px rgba(0, 124, 145, 0.6);
+    }
+
+    form label {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 6px;
+      color: #007c91;
+    }
+
+    form input, form select, form textarea {
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1em;
+      padding: 10px;
+      width: 100%;
+      transition: border-color 0.3s ease;
+    }
+
+    form input:focus, form select:focus, form textarea:focus {
+      outline: none;
+      border-color: #0097a7;
+      box-shadow: 0 0 6px #0097a7;
+    }
+
+    #contacto p {
+      font-size: 1.1em;
+      margin: 6px 0;
+      color: #005662;
+    }
+  </style>
+</head>
+<body> <div id="pantalla-inicio" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0097a7; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; text-align: center;">
+  <h1 style="font-size: 2.5em; margin-bottom: 20px;">Bienvenido a Your Travel Host</h1>
+  <button onclick="entrarSitio()" style="padding: 15px 30px; font-size: 1.2em; border: none; border-radius: 25px; background-color: #ffd54f; color: #004d40; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">Entrar</button>
+</div>
+
+<!-- Botón "Ir arriba" -->
+<button id="irArriba" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" style="position: fixed; bottom: 30px; right: 30px; padding: 12px 18px; background-color: #0097a7; color: white; border: none; border-radius: 50%; font-size: 1.5em; display: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 999;">↑</button>
+  <header>
+    <h1>Explora con Nosotros</h1>
+    <nav>
+      <a href="#destinos">Destinos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#reservacion">Reservación</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>¡Tus mejores viajes comienzan aquí!</h1>
+  </section>
+
+ <section id="destinos" class="section">
+  <h2>Destinos Populares</h2>
+  <div class="destinos">
+    <div class="card">
+      <img src="chautla.jpeg" alt="Ex hacienda de chautla" />
+      <h3>Ex hacienda de chautla</h3>
+      <p>Desde $45 USD</p>
+    </div>
+    <div class="card">
+      <img src="centro.jpeg" alt="Centro Histórico" />
+      <h3>Centro Histórico</h3>
+      <p>Desde $49 USD</p>
+    </div>
+    <div class="card">
+      <img src="tuneles.jpeg" alt="Túneles secretos" />
+      <h3>Túneles secretos</h3>
+      <p>Desde $39 USD</p>
+    </div>
+    <div class="card">
+      <img src="piramides.jpeg" alt="Pirámides" />
+      <h3>Pirámides Cholula</h3>
+      <p>Desde $49 USD</p>
+    </div>
+   <div class="card">
+      <img src="atlixco.jpg" alt="Atlixco" />
+      <h3>Atlixco</h3>
+      <p>Desde $49 USD</p>
+    </div>
+    <div class="card">
+      <img src="chignahuapan.jpeg"alt="Chignahuapan" />
+      <h3>Chignahuapan</h3>
+      <p>Desde $49 USD</p>
+    </div>
+<div class="card">
+      <img src="feria del chile en nogada.jpeg" alt="feria del chile en nogada" />
+      <h3>Feria del chile en nogada</h3>
+      <p>Desde $49 USD</p>
+    </div>
+<div class="card">
+      <img src="cabañas de popocatepetl.jpg" alt="Cabañas Popocatépetl" />
+      <h3>Cabañas Popocatépetl</h3>
+      <p>Desde $49 USD</p>
+    </div>
+<div class="card">
+      <img src="cuetzála.jpg" alt="Cuetzálan" />
+      <h3>Cuetzálan</h3>
+      <p>Desde $65 USD</p>
+    </div>
+<div class="card">
+      <img src="zacatlán.jpg" alt="Zacatlán" />
+      <h3>Zacatlán</h3>
+      <p>Desde $49 USD</p>
+    </div>
+
+  </div>
+  <a href="#reservacion" class="btn">Reserva ahora</a>
+</section>
+  <section id="servicios" class="section" style="background-color: #e0f7fa;">
+    <h2>¿Qué incluyen nuestros paquetes?</h2>
+    <p>Transporte cómodo, guías profesionales, hospedaje y actividades únicas.</p>
+  </section>
+
+  <section id="reservacion" class="section" style="background-color: #f5f5f5;">
+    <h2>Formulario de Reservación</h2>
+    <form style="max-width: 400px; margin: auto; text-align: left;">
+      <label for="nombre">Nombre completo:</label><br />
+      <input type="text" id="nombre" name="nombre" required /><br />
+
+      <label for="correo">Correo electrónico:</label><br />
+      <input type="email" id="correo" name="correo" required /><br />
+
+      <label for="destino">Destino:</label><br />
+      <select id="destino" name="destino" required>
+        <option value="">-- Selecciona un destino --</option>
+        <option value="Puebla">Ex hacienda de chautla</option>
+        <option value="Puebla">Centro histórico</option>
+        <option value="Puebla">Túneles secretos</option>
+        <option value="cholula">pirámides de Cholula</option>
+        <option value="Cholula">Atlixco</option>
+        <option value="Puebla">Chignahuapan</option>
+        <option value="Puebla">Feria del chile en nogada</option>
+        <option value="Puebla">Cabañas Popocatépetl</option>
+        <option value="Puebla">Cuetzálan</option>
+        <option value="Puebla">Zacatlán</option>
+      </select><br />
+
+      <label for="fecha">Fecha de viaje:</label><br />
+      <input type="date" id="fecha" name="fecha" required /><br />
+
+      <label for="mensaje">Mensaje adicional:</label><br />
+      <textarea id="mensaje" name="mensaje" rows="3"></textarea><br />
+
+      <button type="submit" class="btn" style="width: 100%;">Enviar Reservación</button>
+    </form>
+  </section>
+
+  <section id="contacto" class="section">
+    <h2>Contáctanos</h2>
+    <p>Email: info@your_travel_host
+.com</p>
+    <p>WhatsApp: +52 222 108 1876</p>
+    <p>Facebook / Instagram: @your_travel_host</p>
+<p> ⚠ Este sitio web sigue en construcción ⚠</p>
+  </section>
+<footer style="background-color:#007c91; color:white; text-align:center; padding:20px;">
+  <p>&copy; 2025 Viajes Turísticos. Todos los derechos reservados.</p>
+</footer>
+<script>
+  // Oculta pantalla de inicio
+  function entrarSitio() {
+    document.getElementById('pantalla-inicio').style.display = 'none';
+  }
+
+  // Mostrar botón "Ir arriba" cuando se hace scroll
+  window.onscroll = function() {
+    const boton = document.getElementById('irArriba');
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      boton.style.display = 'block';
+    } else {
+      boton.style.display = 'none';
+    }
+  };
+</script>
+</body>
+</html>
